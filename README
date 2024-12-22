@@ -1,0 +1,96 @@
+# ECommerceAutomation
+
+This project automates functionality testing of the Amazon India website using Selenium WebDriver with Java. It includes tests for login, product search, adding items to the cart, and checking for broken links on the homepage. Additionally, the project provides functionality to fetch OTP from a mobile device connected via USB using **ADB** (Android Debug Bridge) for scenarios that require OTP validation.
+
+## Project Structure
+
+- **ECommerceAutomation.java**: Contains automated test scripts for Amazon India website functionalities (login, product search, add to cart, broken links).
+- **OTPFetcher.java**: Fetches OTP from a connected mobile device using ADB. This class is used to fetch OTP and can be extended for testing login through OTP.
+- **TestNG**: Used for running the tests and generating reports.
+
+## Features
+
+- **Login Test**: Validates login functionality using either regular credentials or OTP fetched from a mobile device.
+- **Product Search and Add to Cart**: Automates the search for a product (e.g., iPhone 14) and adds it to the cart.
+- **Broken Link Detection**: Identifies broken links on the homepage and logs the response status.
+- **OTP Fetcher**: Fetches OTP from a mobile device connected via USB using ADB.
+- **Sensitive Data Handling**: Utilizes environment variables to handle sensitive data such as usernames and passwords securely.
+- **CAPTCHA Handling**:
+  - To avoid CAPTCHA during login, perform a **manual login** once and then execute the automated scripts.
+  - In the future, we plan to implement **cookie handling** to persist the session and bypass CAPTCHA verification.
+
+## Prerequisites
+
+1. **Java** (latest version recommended) installed.
+2. **Maven** for project dependency management.
+3. **Selenium WebDriver** and **WebDriverManager** for handling browser drivers.
+4. **ADB** (Android Debug Bridge) for fetching OTP from the mobile device.
+5. **IDE** (like Eclipse or IntelliJ IDEA) for editing and running the code.
+6. **TestNG** for running the test cases and generating reports.
+
+## Setup Instructions
+
+1. Clone the repository:
+   ```bash
+   git clone <repository_url>
+   ```
+
+2. Navigate to the project directory:
+   ```bash
+   cd ECommerceAutomation
+   ```
+
+3. Ensure all dependencies are downloaded by running:
+   ```bash
+   mvn clean install
+   ```
+
+4. For OTP fetching, ensure that your mobile device is connected via USB and **ADB** is set up and running.
+
+5. Set up the required environment variables for **Amazon credentials**:
+   - `AMAZON_USERNAME`
+   - `AMAZON_PASSWORD`
+
+## Test Cases
+
+### 1. Login Test
+- **Description**: Tests the login functionality by navigating to the login page, entering valid credentials (or OTP if extended), and verifying the login success.
+- **Note**: Perform manual login once to bypass CAPTCHA, as CAPTCHA cannot be handled programmatically using Selenium.
+
+### 2. Product Search and Add to Cart
+- **Description**: Searches for a specific product (e.g., iPhone 14) and adds it to the cart, taking a screenshot after successful addition.
+
+### 3. Broken Link Finder
+- **Description**: Detects broken links on the homepage by checking the response codes for all links.
+
+### 4. OTP Fetcher
+- **Description**: Uses ADB to fetch OTP from a mobile device connected via USB. This can be used for testing login scenarios that require OTP validation.
+
+## Future Enhancements
+
+1. **Cookie Handling for CAPTCHA**:
+   - Plan to implement cookie management to persist user sessions and avoid CAPTCHA in future test executions.
+   - Cookies can be stored after manual login and reused in subsequent test runs.
+
+2. **ITestResult Analyzer**:
+   - Integrate an ITestResult analyzer for detailed insights on test case failures.
+
+3. **Extended OTP Handling**:
+   - Enhance OTP functionality to handle validation scenarios across multiple platforms.
+
+## Running the Tests
+
+- To run the tests with Maven:
+   ```bash
+   mvn clean test
+   ```
+
+- To generate the Allure report after test execution:
+   ```bash
+   mvn allure:serve
+   ```
+
+## Conclusion
+
+This project automates essential functionalities of the Amazon India website and provides a way to handle OTP-based logins by fetching OTP from a mobile device using ADB. It offers secure sensitive data handling using environment variables and plans to incorporate cookie handling for better CAPTCHA management in the future.
+
